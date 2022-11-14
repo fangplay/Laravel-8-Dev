@@ -46,4 +46,9 @@ class betaServer extends Controller
         // return view('release');
         return $release->toJson();
     }
+
+    // data encode
+    function encode(){
+        return null;
+    }
 }
