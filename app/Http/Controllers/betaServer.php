@@ -18,7 +18,8 @@ class betaServer extends Controller
     {
         $genData = DB::table('generation')->pluck('name');
         // return view('generations',compact('genData'));
-        return $genData->toJson();
+        //return $genData->toJson();
+        return json_encode(['generation' => $genData]);
     }
     //gamelist route
     function gameData()
@@ -26,7 +27,7 @@ class betaServer extends Controller
         $gameList = DB::table('game-list')->join('generation','game-list.gen_id','=','generation.id')->select('game-list.name as gamename','generation.name as genname')->orderBy('gen_id')->get();
         // return view('game-list',compact('gameList'));
         //return $gameList->toJson();
-        return json_encode($gameList);
+        return json_encode(['gameexgen' => $gameList]);
     }
     //projects route
     function projects(){
@@ -34,7 +35,7 @@ class betaServer extends Controller
         // return view('projects',compact('projects'));
         // return betaServer::json_encode(array('success'));
         //return $projects->toJson();
-        return json_decode($projects);
+        return json_encode(['projectdata' => $projects]);
     }
     // info route
     function info(){
@@ -47,7 +48,7 @@ class betaServer extends Controller
         // return view('release',compact('release'));
         // return view('release');
         //return $release->toJson();
-        return json_encode($release);
+        return json_encode(['gamereleasedata' => $release]);
     }
 
     // data encode
