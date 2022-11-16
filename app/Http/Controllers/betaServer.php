@@ -31,7 +31,7 @@ class betaServer extends Controller
     }
     //projects route
     function projects(){
-        $projects = DB::table('projects')->join('status','projects.status_id','=','status.id')->select('projects.project_name as pname','status.name as sname')->get();
+        $projects = DB::table('projects')->join('status','projects.status_id','=','status.id')->select('projects.project_name as projectname','status.name as statusname')->get();
         // return view('projects',compact('projects'));
         // return betaServer::json_encode(array('success'));
         //return $projects->toJson();
@@ -44,7 +44,7 @@ class betaServer extends Controller
 
     // Release Games
     function release(){
-        $release = DB::table('game-list')->select('year as Year','name as GameName')->orderBy('year')->get();
+        $release = DB::table('game-list')->select('name as GameName','year as Year')->orderBy('year')->get();
         // return view('release',compact('release'));
         // return view('release');
         //return $release->toJson();
