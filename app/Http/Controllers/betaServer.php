@@ -25,14 +25,16 @@ class betaServer extends Controller
     {
         $gameList = DB::table('game-list')->join('generation','game-list.gen_id','=','generation.id')->select('game-list.name as gamename','generation.name as genname')->orderBy('gen_id')->get();
         // return view('game-list',compact('gameList'));
-        return $gameList->toJson();
+        //return $gameList->toJson();
+        return json_encode($gameList);
     }
     //projects route
     function projects(){
         $projects = DB::table('projects')->join('status','projects.status_id','=','status.id')->select('projects.project_name as pname','status.name as sname')->get();
         // return view('projects',compact('projects'));
         // return betaServer::json_encode(array('success'));
-        return $projects->toJson();
+        //return $projects->toJson();
+        return json_decode($projects);
     }
     // info route
     function info(){
@@ -44,7 +46,8 @@ class betaServer extends Controller
         $release = DB::table('game-list')->select('year as Year','name as GameName')->orderBy('year')->get();
         // return view('release',compact('release'));
         // return view('release');
-        return $release->toJson();
+        //return $release->toJson();
+        return json_encode($release);
     }
 
     // data encode
